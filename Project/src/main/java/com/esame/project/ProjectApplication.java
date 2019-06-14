@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @SpringBootApplication
-public class ProjectApplication {
+public class ProjectApplication extends Controller {
 
 	public static void main(String[] args) throws IOException, ParseException {
 

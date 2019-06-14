@@ -26,6 +26,11 @@ public class Controller {
 		ListGenerator Lista = new ListGenerator();
 		return Lista.getLista();
 	}
+	public @RequestMapping(path="/data", params={"filtro"})
+	@ResponseBody String Getfiltriprova(@RequestParam("filtro") String search)
+			 {
+				return search;
+			}
 	@RequestMapping(path="/metadata", method = RequestMethod.GET, headers="Accept=application/json")
 	//stampa metadata in formato json
 	public JSONArray GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException

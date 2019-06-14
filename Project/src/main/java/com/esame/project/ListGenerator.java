@@ -12,7 +12,7 @@ public class ListGenerator implements Filter<DatasetStructure, Object>
 { 
 	private FilterUtils<DatasetStructure> utils;
 	private static final String COMMA_DELIMITER = ";";
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	List<DatasetStructure> lista =new ArrayList();
 	
 	public ListGenerator() throws FileNotFoundException, IOException
