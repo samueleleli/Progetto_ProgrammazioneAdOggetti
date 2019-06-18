@@ -60,5 +60,8 @@ public class MapFilter {
 	public void setMap(JSONArray map) {
 		this.map = map;
 	}
+	public JSONArray MapField() {
+		return (JSONArray) this.getMap();
+	}
 
 }

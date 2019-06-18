@@ -3,26 +3,26 @@ package com.esame.project;
 import java.util.ArrayList;
 //classe che contiene i parametri per contenere la struttura del dataset
 
-public class DatasetStructure  {
+public class DatasetStructure {
 
-	String Codice;
-	String Ubicazione;
-	String AreaCompetenza;
-	String Via;
-	String Civico;
-	int CodiceVia;
-	int Camere;
-	String CamerePiano;
-	String Insegna;
-	String TipoAttivita;
-	int Municipio;
-	double Longit;
-	double Latit;
-	String Location;
+	private String Codice;
+	private String Ubicazione;
+	private String AreaCompetenza;
+	private String Via;
+	private String Civico;
+	private int CodiceVia;
+	private int Camere;
+	private String CamerePiano;
+	private String Insegna;
+	private String TipoAttivita;
+	private int Municipio;
+	private double Longit;
+	private double Latit;
+	private String Location;
     //classe che contiene i parametri del dataset
 	public DatasetStructure(String codice, String ubicazione, String areaCompetenza, String via, String civico, int codiceVia,
 			int camere, String camerePiano, String insegna, String tipoAttivita, int municipio, double longit,
-			double latit, String location) {
+			double latit, String location)  {
 		super();
 		Codice = codice;
 		Ubicazione = ubicazione;
