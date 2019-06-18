@@ -19,7 +19,7 @@ public class DatasetStructure  {
 	double Longit;
 	double Latit;
 	String Location;
-   
+    //classe che contiene i parametri del dataset
 	public DatasetStructure(String codice, String ubicazione, String areaCompetenza, String via, String civico, int codiceVia,
 			int camere, String camerePiano, String insegna, String tipoAttivita, int municipio, double longit,
 			double latit, String location) {
@@ -39,7 +39,7 @@ public class DatasetStructure  {
 		Latit = latit;
 		Location = location;
 	}
-	
+
 	public String getCodice() {
 		return Codice;
 	}

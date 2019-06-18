@@ -17,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ProjectApplication {
 
 	public static void main(String[] args) throws IOException, ParseException {
-
+		DownloadDataset Download =  new DownloadDataset(); //scarica i file
 		SpringApplication.run(ProjectApplication.class, args);
-		DownloadDataset classe =  new DownloadDataset();
 	} 
 }
