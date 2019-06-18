@@ -42,14 +42,14 @@ public class Controller {
 	public JSONArray GetMetadata() throws FileNotFoundException, IOException, ClassNotFoundException
 	{
 		MetadataGenerator metadata = new MetadataGenerator();
-		return metadata.MetadataField();  //ottengo i dati tramite interfaccia
+		return metadata.getMetadata();
 	}
 	//stampa mappa in formato geojson
 	@RequestMapping(path="/map", method = RequestMethod.GET, headers="Accept=application/json")
 	public JSONArray getMap () throws ParseException, IOException
 	{   
 		MapFilter map = new MapFilter();	
-		return map.MapField();  //ottengo i dati tramite interfaccia
+		return map.getMap();
 	}
 
 }

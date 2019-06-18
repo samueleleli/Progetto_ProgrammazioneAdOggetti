@@ -7,11 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-
 import org.json.simple.*;
 
-public class MetadataGenerator {
+public class MetadataGenerator  {
 
 	private static final String COMMA_DELIMITER = ";";
 	private JSONArray metadata=new JSONArray();
@@ -43,8 +41,5 @@ public class MetadataGenerator {
 	}
 	public void setMetadata(JSONArray metadata) {
 		this.metadata = metadata;
-	}
-	public JSONArray MetadataField() {
-		return (JSONArray) this.getMetadata();
 	}
 }
