@@ -79,19 +79,10 @@ public class FilterUtils<T> {
 		else if(tipo!=null || camere!=null || municipio!=null) 
 		{
 			//filtri multipli: in questo caso devo  prendere l'intersezione degli elementi ottenuti
-			if(tipo!=null&&camere!=null&&municipio==null)
-			{
-				List Intersezione=new ArrayList(filtroTipo);
-				Intersezione.retainAll(filtroCamere);
-				return Intersezione;
-			}
-			if(tipo!=null&&municipio!=null&&municipio==null)
-			{
-				List Intersezione=new ArrayList(filtroTipo);
-				Intersezione.retainAll(filtroMunicipio);
-				return Intersezione;
-			}
-			if(tipo!=null&&camere!=null&&municipio!=null)
+			if(tipo!=null&&camere!=null&&municipio==null)  return intersezione(filtroTipo,filtroCamere);
+            if(tipo!=null&&municipio!=null&&camere==null) return intersezione(filtroTipo,filtroMunicipio);
+            if(tipo==null&&municipio!=null&&camere!=null) return intersezione(filtroMunicipio,filtroCamere);
+            if(tipo!=null&&camere!=null&&municipio!=null)
 			{
 				List Intersezione=new ArrayList(filtroTipo);
 				Intersezione.retainAll(filtroCamere);
@@ -100,7 +91,12 @@ public class FilterUtils<T> {
 				return Intersezione2;
 			}
 		}
-	 return Lista.getLista(); // in tutti gli altri casi, ovvero quando il filtro 
+	 return Lista.getLista(); // in tutti gli altri casi, ovvero quando il filtro è vuoto, riotorna l'intera lista
 	}
-
+     public static List<DatasetStructure> intersezione(List filtro1,List filtro2) //intersezione tra le liste
+     {
+			List Intersezione=new ArrayList(filtro1);
+			Intersezione.retainAll(filtro2);
+			return Intersezione;
+     }
 }
