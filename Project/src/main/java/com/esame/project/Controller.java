@@ -1,22 +1,13 @@
 package com.esame.project;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.*;
 import org.json.simple.*;
 
 @RestController 
@@ -36,6 +27,13 @@ public class Controller {
 	{
 		// esempio di filtro: http://localhost:8080/data/filtro?TipoAttivita=Affittacamere&Camere=2&Municipio=1
 		return FilterUtils.filtro(tipo,camere,municipio); //filtro per tipo di attività, numero di camere e zona(municipio)
+	}
+	//stampa i gli elementi unici e le occorrenze
+	@RequestMapping(path="/data/stats", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
+	public JSONObject Unici(@RequestParam(value="Field",required=false) String campo) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
+	{
+		Stats ElementiUnici = new Stats(campo);
+		return ElementiUnici.getElementi() ;  //ritorna il numero di elementi unici e occorrenze
 	}
 	//stampa metadata in formato json
 	@RequestMapping(path="/metadata", method = RequestMethod.GET, headers="Accept=application/json")

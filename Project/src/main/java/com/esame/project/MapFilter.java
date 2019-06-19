@@ -1,17 +1,12 @@
 package com.esame.project;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
-import org.json.simple.*;
 
 public class MapFilter {
 	private JSONArray map = new JSONArray(); 

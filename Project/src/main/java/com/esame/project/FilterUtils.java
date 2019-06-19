@@ -53,7 +53,7 @@ public class FilterUtils<T> {
 			return value.equals(th);       //ritorna vero se sono uguali sennò falso
 		return false;		//in tutti gli altri casi ritorna falso
 	}
-	
+    //filtro dati
 	public static List<DatasetStructure> filtro (String tipo, Integer camere, Integer municipio ) throws FileNotFoundException, IOException
 	{
 		ListGenerator Lista = new ListGenerator();
@@ -65,6 +65,7 @@ public class FilterUtils<T> {
 		{
 			if(tipo.equals("BedeBreakfast")) tipo="Bed e Breakfast"; 
 			if(tipo.equals("CasaFerie")) tipo="Casa Ferie";
+			if(tipo.contentEquals("CasaUniversitaria")) tipo="casa universitaria bertoni";
 		}
 		//fine cambio nomi
 		

@@ -1,6 +1,5 @@
 package com.esame.project;
 
-import java.util.ArrayList;
 //classe che contiene i parametri per contenere la struttura del dataset
 
 public class DatasetStructure {

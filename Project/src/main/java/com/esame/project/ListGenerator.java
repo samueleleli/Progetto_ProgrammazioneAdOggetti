@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-
 
 public class ListGenerator implements Filter<DatasetStructure, Object> 
 { 
@@ -27,8 +25,11 @@ public class ListGenerator implements Filter<DatasetStructure, Object>
 			String[] valori = line.split(COMMA_DELIMITER,14); //salva i valori del dataset in un array di stringhe
 			//Controllo Stringhe 
 			if(valori[9].equals("Case per ferie")) valori[9]="Case Ferie";
-			if(valori[9].equals("Foresteria Lombarda/Locanda")) valori[9]="Foresteria";
-			if(valori[9].equals("Ostello per la Gioventù")) valori[9]="Ostello";
+			else if(valori[9].equals("case per ferie")) valori[9]="Case Ferie"; 
+			else if(valori[9].equals("Casa per ferie")) valori[9]="Case Ferie"; 
+			else if(valori[9].equals("Foresteria Lombarda/Locanda")) valori[9]="Foresteria";
+			else if(valori[9].equals("Ostello per la Gioventù")) valori[9]="Ostello";
+			else if(valori[9].equals("bed e breakfast")) valori[9]="Bed e Breakfast"; 
 			//fine Controllo Stringhe
 
 			//controlli sui valori double e int in modo che non contengano il valore null [5,6,10,11,12]
