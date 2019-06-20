@@ -26,14 +26,15 @@ public class Controller {
 										,@RequestParam(value="Municipio",required=false)Integer municipio) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
 	{
 		// esempio di filtro: http://localhost:8080/data/filtro?TipoAttivita=Affittacamere&Camere=2&Municipio=1
-		return FilterUtils.filtro(tipo,camere,municipio); //filtro per tipo di attività, numero di camere e zona(municipio)
+		return FilterUtils.filtro("=",tipo,camere,municipio); //filtro per tipo di attività, numero di camere e zona(municipio)
 	}
-	//stampa i gli elementi unici e le occorrenze
+	//stampa gli elementi unici e le occorrenze
 	@RequestMapping(path="/data/stats", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
 	public JSONObject Unici(@RequestParam(value="Field",required=false) String campo) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
+
 	{
 		Stats ElementiUnici = new Stats(campo);
-		return ElementiUnici.getElementi() ;  //ritorna il numero di elementi unici e occorrenze
+		return ElementiUnici.getElementi() ;  //ritorna gli elementi unici e occorrenze
 	}
 	//stampa metadata in formato json
 	@RequestMapping(path="/metadata", method = RequestMethod.GET, headers="Accept=application/json")

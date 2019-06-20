@@ -18,8 +18,7 @@ public class MetadataGenerator  {
 		Constructor listaCostruttori[] = c.getConstructors();  //ottiene lista dei costruttori
 		Field listaParam[] = c.getDeclaredFields();			//ottiene lista degli attributi
 		Class  tipiParam[] = listaCostruttori[0].getParameterTypes();  //ottengo i tipi degli attributi del costruttore
-		String line;
-		line = br.readLine(); 	//legge la prima riga del dataset in modo da ricavarne i titoli
+		String line = br.readLine(); 	//legge la prima riga del dataset in modo da ricavarne i titoli
 		String[] valori = line.split(COMMA_DELIMITER,14); 
 		//inserisco i dati raccolti in un array json
 		for (int j=0; j < listaParam.length; j++)

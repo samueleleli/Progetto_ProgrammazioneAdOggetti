@@ -54,7 +54,7 @@ public class FilterUtils<T> {
 		return false;		//in tutti gli altri casi ritorna falso
 	}
     //filtro dati
-	public static List<DatasetStructure> filtro (String tipo, Integer camere, Integer municipio ) throws FileNotFoundException, IOException
+	public static List<DatasetStructure> filtro (String operator,String tipo, Integer camere, Integer municipio ) throws FileNotFoundException, IOException
 	{
 		ListGenerator Lista = new ListGenerator();
 		ArrayList<DatasetStructure> filtroTipo = new ArrayList();
@@ -70,7 +70,7 @@ public class FilterUtils<T> {
 		//fine cambio nomi
 		
 		filtroTipo = Lista.filterField("TipoAttivita", "=", tipo);  //filtro i tipi di attività
-		filtroCamere = Lista.filterField("Camere", "=",camere);     //filtro i numeri delle camere
+		filtroCamere = Lista.filterField("Camere", operator,camere);     //filtro i numeri delle camere
 		filtroMunicipio = Lista.filterField("Municipio", "=",municipio); //filtro i municipi
         
 		//valuto caso per caso il filtro da attuare a seconda della scelta dell'utente
@@ -94,7 +94,7 @@ public class FilterUtils<T> {
 		}
 	 return Lista.getLista(); // in tutti gli altri casi, ovvero quando il filtro è vuoto, riotorna l'intera lista
 	}
-     public static List<DatasetStructure> intersezione(List filtro1,List filtro2) //intersezione tra le liste
+     private static List<DatasetStructure> intersezione(List filtro1,List filtro2) //intersezione tra le liste
      {
 			List Intersezione=new ArrayList(filtro1);
 			Intersezione.retainAll(filtro2);
