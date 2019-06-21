@@ -21,16 +21,19 @@ public class Controller {
 	}
 	//stampa i dati del filtro scelto
 	@RequestMapping(path="/data/filtro", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
-	public List<DatasetStructure> Filtri(@RequestParam(value="TipoAttivita",required=false) String tipo
+	public List Filtri(@RequestParam(value="TipoAttivita",required=false) String tipo
 										, @RequestParam(value="Camere",required=false)Integer camere
-										,@RequestParam(value="Municipio",required=false)Integer municipio) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
+										,@RequestParam(value="Municipio",required=false)Integer municipio 
+										,@RequestParam(value="Map",required=false)boolean map) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
+, ParseException
 	{
 		// esempio di filtro: http://localhost:8080/data/filtro?TipoAttivita=Affittacamere&Camere=2&Municipio=1
-		return FilterUtils.filtro("=",tipo,camere,municipio); //filtro per tipo di attività, numero di camere e zona(municipio)
+		return FilterUtils.filtro("=",tipo,camere,municipio,map); //filtro per tipo di attività, numero di camere e zona(municipio)
 	}
 	//stampa gli elementi unici e le occorrenze
 	@RequestMapping(path="/data/stats", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
 	public JSONObject Unici(@RequestParam(value="Field",required=false) String campo) throws FileNotFoundException, IOException //stampa tutti i dati del dataset in formato json
+, ClassNotFoundException
 
 	{
 		Stats ElementiUnici = new Stats(campo);
@@ -45,9 +48,9 @@ public class Controller {
 	}
 	//stampa mappa in formato geojson
 	@RequestMapping(path="/map", method = RequestMethod.GET, headers="Accept=application/json")
-	public JSONArray getMap () throws ParseException, IOException
+	public JSONObject getMap () throws ParseException, IOException
 	{   
-		MapFilter map = new MapFilter();	
+		MapGenerator map = new MapGenerator();	
 		return map.getMap();
 	}
 
