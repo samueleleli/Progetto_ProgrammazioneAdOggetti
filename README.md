@@ -40,7 +40,7 @@ REST GET consentite:
 * [http://localhost:8080/map] : restituisce tutti i dati in formato geoJSON
 * [http://localhost:8080/data/stats?Field=TipoAttivita] : restuisce il numero di occorrenze per ogni elemento unico (solo stringhe)
 * [http://localhost:8080/data/filtro/minore?TipoAttivita=BedeBreakfast&Camere=3&Map=false&Municipio=1] :
-  restituisce i dati in formato geoJSON (Map=true) corrispondenti al tipo di attività ricettiva Bed & Breakfast con meno di 3 camere e situato nel municipio 1
+  restituisce i dati in formato JSON (Map=false) corrispondenti al tipo di attività ricettiva Bed & Breakfast con meno di 3 camere e situato nel municipio 1
 
 **VALORI CONSENTITI (per filtri e statistiche)**
 
