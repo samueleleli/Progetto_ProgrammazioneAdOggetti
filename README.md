@@ -46,7 +46,7 @@ REST GET consentite:
 
 Per quanto riguarda i valori consentiti per i vari filtri, si possono ricorrere alle funzioni di cui sopra. Per esempio se si vuole sapere quali sono i valori consentiti per TipoAttivita si sfruttano le stats con Field=TipoAttivita, in questo modo verranno stampati tutti gli elementi unici dei tipi di attività presenti nel dataset. In questo modo attraverso il filtro si possono trovare tutti i dati d'interesse relativo all'attività.
 Per i tipi numerici (quali Camere e Municipio) sono consentiti solo valori numerici.
-## DIAGRAMMI UML
+## DIAGRAMMI UML (CARTELLA /Diagrams)
 **DIAGRAMMA DELLE CLASSI**
 
 **DIAGRAMMA DEI CASI D'USO**
