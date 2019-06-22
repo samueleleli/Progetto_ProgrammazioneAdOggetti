@@ -7,11 +7,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che crea i metadati.
+ */
 public class MetadataGenerator  {
 
 	private static final String COMMA_DELIMITER = ";";
 	private JSONArray metadata=new JSONArray();
+	/**
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public MetadataGenerator() throws ClassNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader("dataset.csv")); //file da leggere
 		Class c = Class.forName("com.esame.project.DatasetStructure"); //classe scelta
@@ -33,7 +44,8 @@ public class MetadataGenerator  {
 			if(tipo.equals("java.lang.String")) obj.put("type","String");   //se l'oggetto è java.lang.String lo cambio in String
 			metadata.add(obj);   						//aggiungo di volta in volta l'oggetto all'Array json
 		}
-	}   
+	}  
+
 	public JSONArray getMetadata() {
 		return metadata;
 	}

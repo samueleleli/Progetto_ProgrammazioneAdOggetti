@@ -1,9 +1,13 @@
 package com.esame.project;
 
-//classe che contiene i parametri per contenere la struttura del dataset
-
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che contiene la struttura del dataset.
+ */
 public class DatasetStructure {
-
 	private String Codice;
 	private String Ubicazione;
 	private String AreaCompetenza;

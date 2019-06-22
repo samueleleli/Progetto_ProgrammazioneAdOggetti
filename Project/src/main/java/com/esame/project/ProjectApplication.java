@@ -14,9 +14,21 @@ import org.json.simple.parser.ParseException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che inizializza il server Spring.
+ */
 @SpringBootApplication
 public class ProjectApplication {
+	 /**
+	  * 
+	  * @param args
+	  * @throws IOException
+	  * @throws ParseException
+	  */
 
 	public static void main(String[] args) throws IOException, ParseException {
 		DownloadDataset();
@@ -62,4 +74,5 @@ public class ProjectApplication {
 		}
 	}
 }
+
 

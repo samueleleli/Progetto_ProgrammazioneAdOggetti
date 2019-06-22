@@ -6,14 +6,24 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che crea la lista dal dataset.
+ */
 public class ListGenerator implements Filter<DatasetStructure, Object> 
 { 
 	private FilterUtils<DatasetStructure> utils;
 	private static final String COMMA_DELIMITER = ";";
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	List<DatasetStructure> lista =new ArrayList();
-
+   /**
+    * 
+    * @throws FileNotFoundException
+    * @throws IOException
+    */
 	public ListGenerator() throws FileNotFoundException, IOException
 	{
 		super();
@@ -51,6 +61,7 @@ public class ListGenerator implements Filter<DatasetStructure, Object>
 	void setLista(List<DatasetStructure> lista) {
 		this.lista = lista;
 	}
+
 	@Override
 	public ArrayList<DatasetStructure> filterField(String fieldName, String operator, Object value) {
 		return (ArrayList<DatasetStructure>) utils.select(this.getLista(), fieldName, operator, value);	//seleziona elementi da filtrare

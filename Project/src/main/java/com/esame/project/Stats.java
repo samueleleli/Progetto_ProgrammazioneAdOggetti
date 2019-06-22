@@ -11,11 +11,22 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-// non avendo a disposizione parametri per fare statistiche ho fatto solo il conteggio degli elementi unici (solo stringhe)
-
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che gestisce le statistiche  ritorna i parametri presenti nel campo scelto e il numero di occorrenze per ognuno.
+ */
 public class Stats {
 	private JSONObject Elementi = new JSONObject(); //oggetto JSON che contiene nome campo e numero di occorrenze 
-
+    /**
+     * 
+     * @param fieldName campo di cui si vogliono trovare le occorrenze
+     * @throws FileNotFoundException 
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 	public Stats(String fieldName) throws FileNotFoundException, IOException, ClassNotFoundException { 
 		super();
 		boolean flag=false;   //controllo che mi consente di salvare il campo nella lista se non compare tra i precedenti

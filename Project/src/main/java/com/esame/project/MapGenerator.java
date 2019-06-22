@@ -1,5 +1,4 @@
 package com.esame.project;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,9 +6,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
+/**
+ * @author Samuele Leli (s1084424@studenti.univpm.it)
+ * @version 1.0
+ */
+/**
+ * Classe che gestisce il file geojson.
+ */
 public class MapGenerator {
 
 	private JSONObject map = new JSONObject(); 
+	/**
+	 * 
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public MapGenerator() throws IOException, ParseException
 	{
 
