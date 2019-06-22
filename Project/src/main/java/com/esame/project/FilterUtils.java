@@ -49,8 +49,11 @@ public class FilterUtils<T> {
 			Double thC = ((Number)th).doubleValue();        //faccio il casting di tipo double
 			Double valuec = ((Number)value).doubleValue();  //faccio il casting di tipo double
 			if (operator.equals("="))				//se l'operatore è uguale
-				return value.equals(th);            //ritorna vero se è maggiore sennò falso
-
+				return value.equals(th);  //ritorna vero se è maggiore sennò falso
+			else if (operator.equals(">"))
+				return valuec > thC;
+			else if (operator.equals("<"))
+				return valuec < thC;
 		}else if(th instanceof String && value instanceof String) //se si stanno confrontando 2 stringhe
 			return value.equals(th);       //ritorna vero se sono uguali sennò falso
 		return false;		//in tutti gli altri casi ritorna falso

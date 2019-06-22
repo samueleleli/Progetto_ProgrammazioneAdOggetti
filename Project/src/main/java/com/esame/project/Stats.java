@@ -24,8 +24,8 @@ public class Stats {
 		for(int i=0;i<array.size();i++)
 		{
 			JSONObject app=(JSONObject) array.get(i);
-			String tipo = (String) app.get("type");
-			String field = (String) app.get("alias");
+			String tipo = (String) app.get("type");   //ottengo il tipo dai metadati
+			String field = (String) app.get("alias"); //ottengo il nome della variabile
 			if(field.equals(fieldName) && tipo.equals("String"))  //controllo se il campo cercato è presente tra i metadati
 			{
 				flag=true; //se è presente, flag diventa true
@@ -107,7 +107,7 @@ public class Stats {
 		}
 		else
 		{
-			Elementi.put("result","refused - PARAMETRO INESISTENTE O DI TIPO NUMERICO");
+			Elementi.put("result","refused - PARAMETRO INESISTENTE O DI TIPO NUMERICO"); //errore
 		}
 
 	}
