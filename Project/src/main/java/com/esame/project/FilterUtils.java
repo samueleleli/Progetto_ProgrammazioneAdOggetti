@@ -62,7 +62,7 @@ public class FilterUtils<T> {
      * @param th secondo valore da confrontare
      * @return true se sono uguali, maggiori o minori (a seconda dell'operazione scelta) e false se non lo sono
      */
-	public static boolean check(Object value, String operator, Object th) {
+	private static boolean check(Object value, String operator, Object th) {
 		if (th instanceof Number && value instanceof Number) {	//se si stanno confrontando 2 numeri
 			Double thC = ((Number)th).doubleValue();        //faccio il casting di tipo double
 			Double valuec = ((Number)value).doubleValue();  //faccio il casting di tipo double
@@ -70,6 +70,10 @@ public class FilterUtils<T> {
 				return value.equals(th);  //ritorna vero se è maggiore sennò falso
 			else if (operator.equals(">"))
 				return valuec > thC;
+			else if (operator.equals(">="))
+					return valuec >= thC;
+			else if (operator.equals("<="))
+				return valuec <= thC;		
 			else if (operator.equals("<"))
 				return valuec < thC;
 		}else if(th instanceof String && value instanceof String) //se si stanno confrontando 2 stringhe
@@ -89,7 +93,7 @@ public class FilterUtils<T> {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public static List<DatasetStructure> filtro (String operator,String tipo, Integer camere, Integer municipio, boolean map) throws FileNotFoundException, IOException, ParseException
+	public static Object filtro (String operator,String tipo, Integer camere, Integer municipio, boolean map) throws FileNotFoundException, IOException, ParseException
 	{
 		//cambio i nomi per i filtri
 		if (tipo != null)   
@@ -106,8 +110,7 @@ public class FilterUtils<T> {
 		ArrayList filtroMunicipio = new ArrayList(); 
 		if(map==true)
 		{
-			ArrayList mappatura = new ArrayList();
-			JSONObject mappatura2 = new JSONObject();
+			JSONObject mappatura = new JSONObject();
 			int n_camere;
 			int n_municipio;
 			String tipo_attivita;
@@ -127,7 +130,7 @@ public class FilterUtils<T> {
 					if (camere!=null && properties.containsKey("camere")) 
 					{
 						n_camere = (int) properties.get("camere");
-						boolean flagcamere = check(camere,"=",n_camere);
+						boolean flagcamere = check(n_camere,operator,camere);
 						if (flagcamere==true) filtroCamere.add(ogg);						
 					}
 					if (municipio!=null && properties.containsKey("MUNICIPIO")) 
@@ -144,9 +147,8 @@ public class FilterUtils<T> {
 					}       
 				}
 			}
-			mappatura2.put("features",Listafiltrata(tipo, camere, municipio, filtroTipo, filtroCamere, filtroMunicipio));
-			mappatura2.put("type","FeatureCollection");
-			mappatura.add(mappatura2);
+			mappatura.put("features",Listafiltrata(tipo, camere, municipio, filtroTipo, filtroCamere, filtroMunicipio));
+			mappatura.put("type","FeatureCollection");
 			return mappatura;
 		}
 		else
@@ -176,7 +178,7 @@ public class FilterUtils<T> {
 	 * @param filtroMunicipio lista filtrata
 	 * @return la lista filtrata
 	 */
-	private static List Listafiltrata(String tipo, Integer camere, Integer municipio, List filtroTipo, List filtroCamere, List filtroMunicipio)
+	private static List<DatasetStructure> Listafiltrata(String tipo, Integer camere, Integer municipio, List filtroTipo, List filtroCamere, List filtroMunicipio)
 	{
 
 		//valuto caso per caso il filtro da attuare a seconda della scelta dell'utente
