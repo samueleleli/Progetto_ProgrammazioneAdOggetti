@@ -31,7 +31,7 @@ public class ProjectApplication {
 	  */
 
 	public static void main(String[] args) throws IOException, ParseException {
-		//DownloadDataset();
+		DownloadDataset();
 		SpringApplication.run(ProjectApplication.class, args);
 	} 
 

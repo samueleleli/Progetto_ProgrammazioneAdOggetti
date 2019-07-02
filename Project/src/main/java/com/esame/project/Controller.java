@@ -1,21 +1,14 @@
 package com.esame.project;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
+import org.json.simple.JSONArray;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import org.json.simple.*;
 /**
  * @author Samuele Leli (s1084424@studenti.univpm.it)
@@ -52,7 +45,7 @@ public class Controller {
 	 */
 	//stampa i dati del filtro scelto
 	@RequestMapping(path="/data/filtro", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
-	public Object Filtri(@RequestParam(value="TipoAttivita",required=false) String tipo
+	public List Filtri(@RequestParam(value="TipoAttivita",required=false) String tipo
 										, @RequestParam(value="Camere",required=false)Integer camere
 										,@RequestParam(value="Municipio",required=false)Integer municipio 
 										,@RequestParam(value="Map",required=false)boolean map) throws FileNotFoundException, IOException, ParseException //stampa tutti i dati del dataset in formato json
@@ -74,7 +67,7 @@ public class Controller {
 	 * @throws ParseException
 	 */
 	@RequestMapping(path="/data/filtro/{operazione}", method = RequestMethod.GET, headers="Accept=application/json; charset=utf-8")
-	public Object FiltroMaggioreMinore(@RequestParam(value="TipoAttivita",required=false) String tipo
+	public List FiltroMaggioreMinore(@RequestParam(value="TipoAttivita",required=false) String tipo
 						,@RequestParam(value="Municipio",required=false)Integer municipio 
 			            , @RequestParam(value="Camere",required=false)Integer camere
 			            ,@RequestParam(value="Map",required=false)boolean map
@@ -82,10 +75,10 @@ public class Controller {
 
 	{
 		// esempio di filtro: http://localhost:8080/data/filtro/maggiore?TipoAttivita=Affittacamere&Camere=2&Municipio=1
-		if(operazione.equals("maggiore"))   return FilterUtils.filtro(">",tipo,camere,municipio,map); //filtro per tipo di attività, numero di camere e zona(municipio) 
-		else if(operazione.equals("minore"))   return FilterUtils.filtro("<",tipo,camere,municipio,map); //filtro per tipo di attività, numero di camere e zona(municipio)
-		else if(operazione.equals("maggioreuguale")) return FilterUtils.filtro(">=",tipo,camere,municipio,map);
-		else if(operazione.equals("minoreuguale")) return FilterUtils.filtro("<=",tipo,camere,municipio,map);
+		if(operazione.equals("maggiore"))    //solo per camere!!
+		return FilterUtils.filtro(">",tipo,camere,municipio,map); //filtro per tipo di attività, numero di camere e zona(municipio) 
+		else if(operazione.equals("minore"))     //solo per camere!!
+	    return FilterUtils.filtro("<",tipo,camere,municipio,map); //filtro per tipo di attività, numero di camere e zona(municipio)
 		else return null;
 	}
 	/**
@@ -122,20 +115,15 @@ public class Controller {
 	//stampa dati in formato geojson
 	/**
 	 * 
-	 * @return 
 	 * @return i dati in formato geojson
 	 * @throws ParseException
 	 * @throws IOException
 	 */
 	@RequestMapping(path="/map", method = RequestMethod.GET, headers="Accept=application/json")
-
-     public JSONObject method() throws IOException, ParseException {
-	    	MapGenerator map = new MapGenerator();	
-			JSONObject points = map.getMap();
-	    	//String url = "http://geojson.io/#data=data:application/json,"+URLEncoder.encode(points.toString(), StandardCharsets.UTF_8.toString());
-		    //System.out.print(url.length());
-	    	//return new ModelAndView("redirect:" + url);
-	        return points;    
+	public JSONObject getMap () throws ParseException, IOException
+	{   
+		MapGenerator map = new MapGenerator();	
+		return map.getMap();
 	}
-	
+
 }

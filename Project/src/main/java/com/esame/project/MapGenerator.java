@@ -2,9 +2,6 @@ package com.esame.project;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -30,7 +27,7 @@ public class MapGenerator {
 		// classe che stampa le posizioni delle strutture extra alberghiere in formato geojson in modo da poterle
 		// inserire in una mappa vera come geojson.io
 		// ho dovuto modificare il file tramite questa classe perchè alcune coordinate erano vuote
-		// questo problema non permetteva la visulizzazione della mappa su geojson allora ho filtrato il file
+		// questo problema non permetteva la visulizzazione della mappa su geojson allora ho il filtrato il file
 		// in modo da eliminare questi elementi
 
 		String dati=""; 
@@ -80,15 +77,12 @@ public class MapGenerator {
 					properties.put("MUNICIPIO", municipio);
 				}			
 				//fine controlli per filtro
-				ogg3.put("properties", properties);
 				app.add(ogg3);  			  //aggiungo l'oggetto al mio oggetto d'appoggio
 			}
-		
 		}
 		map.put("features",app); //tutti i dati  che ho ottenuto li inserisco in un nuovo oggetto
 		map.put("type","FeatureCollection"); //aggiungo un parametro che viene utilizzato come standard nei file geojson
-		
-		
+
 	}
 	public JSONObject getMap() {
 		return map;
