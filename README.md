@@ -14,16 +14,17 @@ REST GET consentite:
  `localhost:8080`
 * `/data`: restituisce tutti i dati del dataset
  
-* `/data/filtro?` : restituisce i dati a seconda dei parametri scelti (attraverso '&' si possono combinare pi˘ filtri)
-  * TipoAttivita : filtro per tipo di attivit‡
+* `/data/filtro?` : restituisce i dati a seconda dei parametri scelti (attraverso '&' si possono combinare pi√π filtri)
+  * TipoAttivita : filtro per tipo di attivit√†
   *  Camere: filtro per numero di camere disponibili
    * Municipio: filtro per zona
-	* Map: puÚ assumere valore true o false , nel caso sia true restituisce i valori filtrati in formato GeoJSON, in caso non sia presente nella richiesta restituir‡ i valori in formato json      
-* `/data/filtro/{operazione}?` : restituisce i dati a seconda dei parametri scelti (attraverso '&' si possono combinare pi˘ filtri), dove
-{operazione} puÚ assumere valore "maggiore" o "minore" (da utilizzare solo nel caso di camere).
-	* "maggiore": restituisce i dati delle strutture che hanno pi˘ camere rispetto al valore assegnato al parametro "Camere"
+	* Map: pu√≤ assumere valore true o false , nel caso sia true restituisce i valori filtrati in formato GeoJSON, in caso non sia presente nella richiesta restituir√† i valori in formato json      
+* `/data/filtro/{operazione}?` : restituisce i dati a seconda dei parametri scelti (attraverso '&' si possono combinare pi√π filtri), dove
+{operazione} pu√≤ assumere valore "maggiore" o "minore" (da utilizzare solo nel caso di camere).
+	* "maggiore": restituisce i dati delle strutture che hanno pi√π camere rispetto al valore assegnato al parametro "Camere"
   * "minore": restituisce i dati delle strutture che hanno meno camere rispetto al valore assegnato al parametro "Camere"
-
+  * "maggioreuguale": restituisce i dati delle strutture che hanno pi√π o lo stesso numero di camere rispetto al valore assegnato al parametro "Camere"
+  * "minoreuguale": restituisce i dati delle strutture che hanno meno o lo stesso numero di camere rispetto al valore assegnato al parametro "Camere"
    Sono ammessi gli stessi parametri del filtro precedente.
 * `/data/stats?` : restituisce gli elementi unici e le occorrenze a seconda del parametro scelto (solo per stringhe)
 	* Field: campo di cui si vogliono trovare gli elementi unici e le 	occorrenze
@@ -33,18 +34,18 @@ REST GET consentite:
 
 **ESEMPI :**
 
-* [http://localhost:8080/data/filtro?TipoAttivita=BedeBreakfast&Camere=3&Map=true&Municipio=1] : 
- restituisce i dati in formato geoJSON (Map=true) corrispondenti al tipo di attivit‡ ricettiva Bed & Breakfast con 3 camere e situato nel municipio 1
- * [http://localhost:8080/data] : restituisce tutti i dati
-* [http://localhost:8080/metadata] :restituisce i metadati (Nomi attributi, record e tipi)
-* [http://localhost:8080/map] : restituisce tutti i dati in formato geoJSON
-* [http://localhost:8080/data/stats?Field=TipoAttivita] : restuisce il numero di occorrenze per ogni elemento unico (solo stringhe)
-* [http://localhost:8080/data/filtro/minore?TipoAttivita=BedeBreakfast&Camere=3&Map=false&Municipio=1] :
-  restituisce i dati in formato JSON (Map=false) corrispondenti al tipo di attivit‡ ricettiva Bed & Breakfast con meno di 3 camere e situato nel municipio 1
+* [http://localhost:8080/data/filtro?TipoAttivita=BedeBreakfast&Camere=3&Map=true&Municipio=1](h) : 
+ restituisce i dati in formato geoJSON (Map=true) corrispondenti al tipo di attivit√† ricettiva Bed & Breakfast con 3 camere e situato nel municipio 1
+ * [http://localhost:8080/data](h) : restituisce tutti i dati
+* [http://localhost:8080/metadata](h) :restituisce i metadati (Nomi attributi, record e tipi)
+* [http://localhost:8080/map](h) : restituisce tutti i dati in formato geoJSON
+* [http://localhost:8080/data/stats?Field=TipoAttivita](h) : restuisce il numero di occorrenze per ogni elemento unico (solo stringhe)
+* [http://localhost:8080/data/filtro/minore?TipoAttivita=BedeBreakfast&Camere=3&Map=false&Municipio=1](h) :
+  restituisce i dati in formato JSON (Map=false) corrispondenti al tipo di attivit√† ricettiva Bed & Breakfast con meno di 3 camere e situato nel municipio 1
 
 **VALORI CONSENTITI (per filtri e statistiche)**
 
-Per quanto riguarda i valori consentiti per i vari filtri, si possono ricorrere alle funzioni di cui sopra. Per esempio se si vuole sapere quali sono i valori consentiti per TipoAttivita si sfruttano le stats con Field=TipoAttivita, in questo modo verranno stampati tutti gli elementi unici dei tipi di attivit‡ presenti nel dataset. In questo modo attraverso il filtro si possono trovare tutti i dati d'interesse relativo all'attivit‡.
+Per quanto riguarda i valori consentiti per i vari filtri, si possono ricorrere alle funzioni di cui sopra. Per esempio se si vuole sapere quali sono i valori consentiti per TipoAttivita si sfruttano le stats con Field=TipoAttivita, in questo modo verranno stampati tutti gli elementi unici dei tipi di attivit√† presenti nel dataset. In questo modo attraverso il filtro si possono trovare tutti i dati d'interesse relativo all'attivit√†.
 Per i tipi numerici (quali Camere e Municipio) sono consentiti solo valori numerici.
 ## DIAGRAMMI UML (CARTELLA /Diagrams)
 **DIAGRAMMA DELLE CLASSI**
