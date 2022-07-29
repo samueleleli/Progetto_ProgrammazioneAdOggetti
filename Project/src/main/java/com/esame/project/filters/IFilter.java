@@ -1,4 +1,4 @@
-package com.esame.project;
+package com.esame.project.filters;
 /**
  * @author Samuele Leli (s1084424@studenti.univpm.it)
  * @version 1.0
@@ -8,7 +8,7 @@ package com.esame.project;
  */
 import java.util.Collection;
 
-public interface Filter<E,T> {
+public interface IFilter<E,T> {
 	/**
 	 * 
 	 * @param fieldName parametro che si vuole confrontare

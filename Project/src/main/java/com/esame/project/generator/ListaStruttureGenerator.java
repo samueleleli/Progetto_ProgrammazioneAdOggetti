@@ -1,11 +1,13 @@
-package com.esame.project;
+package com.esame.project.generator;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import com.esame.project.filters.FilterUtils;
+import com.esame.project.filters.IFilter;
+import com.esame.project.models.StrutturaAlberghiera;
 /**
  * @author Samuele Leli (s1084424@studenti.univpm.it)
  * @version 1.0
@@ -13,18 +15,18 @@ import java.util.List;
 /**
  * Classe che crea la lista dal dataset.
  */
-public class ListGenerator implements Filter<DatasetStructure, Object> 
+public class ListaStruttureGenerator implements IFilter<StrutturaAlberghiera, Object> 
 { 
-	private FilterUtils<DatasetStructure> utils;
+	private FilterUtils<StrutturaAlberghiera> utils;
 	private static final String COMMA_DELIMITER = ";";
 	@SuppressWarnings({"rawtypes", "unchecked"})
-	List<DatasetStructure> lista =new ArrayList();
+	ArrayList<StrutturaAlberghiera> lista =new ArrayList<StrutturaAlberghiera>();
    /**
     * 
     * @throws FileNotFoundException
     * @throws IOException
     */
-	public ListGenerator() throws FileNotFoundException, IOException
+	public ListaStruttureGenerator() throws FileNotFoundException, IOException
 	{
 		super();
 		BufferedReader br = new BufferedReader(new FileReader("dataset.csv"));
@@ -49,22 +51,36 @@ public class ListGenerator implements Filter<DatasetStructure, Object>
 			if(valori[11].isEmpty()) valori[11]="0";
 			if(valori[12].isEmpty()) valori[12]="0";
 			// fine controllo sugli int e double
-			this.lista.add(new DatasetStructure (valori[0],valori[1],valori[2],valori[3],valori[4],Integer.parseInt(valori[5]),Integer.parseInt(valori[6]),valori[7],valori[8],valori[9],Integer.parseInt(valori[10]),Double.parseDouble(valori[11]),Double.parseDouble(valori[12]),valori[13]));
+			this.lista.add(new StrutturaAlberghiera (valori[0],valori[1],valori[2],valori[3],valori[4],Integer.parseInt(valori[5]),Integer.parseInt(valori[6]),valori[7],valori[8],valori[9],Integer.parseInt(valori[10]),Double.parseDouble(valori[11]),Double.parseDouble(valori[12]),valori[13]));
 			//aggiunge i valori letti a una lista
 		}
-		this.utils = new FilterUtils<DatasetStructure>();
+		br.close();
+		this.utils = new FilterUtils<StrutturaAlberghiera>();
 
 	}
-	List<DatasetStructure> getLista() {
+	public ArrayList<StrutturaAlberghiera> getLista() {
 		return lista;
 	}
-	void setLista(List<DatasetStructure> lista) {
+	void setLista(ArrayList<StrutturaAlberghiera> lista) {
 		this.lista = lista;
 	}
 
 	@Override
-	public ArrayList<DatasetStructure> filterField(String fieldName, String operator, Object value) {
-		return (ArrayList<DatasetStructure>) utils.select(this.getLista(), fieldName, operator, value);	//seleziona elementi da filtrare
+	public ArrayList<StrutturaAlberghiera> filterField(String fieldName, String operator, Object value) {
+			try {
+				if (value != null)   
+				{
+					if(value.equals("BedeBreakfast")) value="Bed e Breakfast"; 
+					if(value.equals("CasaFerie")) value="Casa Ferie";
+					if(value.equals("CasaUniversitaria")) value="casa universitaria bertoni";
+				}
+				return (ArrayList<StrutturaAlberghiera>) utils.select(this.getLista(), fieldName, operator, value);
+			} catch (NoSuchMethodException e) {
+				return new ArrayList<StrutturaAlberghiera>();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				return new ArrayList<StrutturaAlberghiera>();
+			}
 	}
 
 }
